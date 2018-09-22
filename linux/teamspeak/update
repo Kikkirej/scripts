@@ -36,7 +36,7 @@ bunzip2 $filename
 tarfilename=${filename::-4}
 echo "Tar-Name:"
 echo $tarfilename
-tar xvf $tarfilename
+tar xf $tarfilename
 
 echo "Dienst stoppen"
 systemctl stop teamspeak
