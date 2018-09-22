@@ -1,0 +1,54 @@
+#!/bin/bash
+cd /home/teamspeak
+touch scripts/alterDownloadLink
+aktuellerDownloadLink=$(wget https://kikkirej.net/download/teamspeakupdateurl -q -O -)
+echo "Aktueller Downloadlink"
+echo $aktuellerDownloadLink
+alterDownloadlink=`cat scripts/alterDownloadLink`
+echo "Alter Downloadlink:"
+echo $alterDownloadlink
+
+if [ "$alterDownloadlink" = "$aktuellerDownloadLink" ]; then
+  echo "Es gibt noch keinen neuen Downloadlink. Es wird nicht geupdatet"
+  exit
+else
+  echo "Es gibt einen neuen Updatelink. Das Update wird fortgesetzt."
+fi
+
+echo "Altes Backup löschen und neues erstellen"
+rm -rf backup/
+mkdir backup
+cp -R teamspeak3-server_linux_amd64 backup
+
+echo "Altes Updateverzeichnis aufräumen."
+rm -rf update/
+mkdir update
+
+echo "Update herunterladen"
+cd update/
+wget $aktuellerDownloadLink
+
+echo "Update entpacken"
+filename=$(basename "$aktuellerDownloadLink")
+echo "Dateiname:"
+echo $filename
+bunzip2 $filename
+tarfilename=${filename::-4}
+echo "Tar-Name:"
+echo $tarfilename
+tar xvf $tarfilename
+
+echo "Dienst stoppen"
+systemctl stop teamspeak
+
+echo "Update kopieren"
+cp -R teamspeak3-server_linux_amd64/* ../teamspeak3-server_linux_amd64/
+
+echo "Rechte update"
+chown -R teamspeak:teamspeak /home/teamspeak
+
+echo "Dienst starten"
+systemctl start teamspeak
+
+echo "gespeicherte UpdateURL aktualisieren"
+echo $aktuellerDownloadLink>../scripts/alterDownloadLink
