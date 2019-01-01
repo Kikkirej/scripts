@@ -1,6 +1,6 @@
 #!/bin/zsh
 CALL_PATH=`pwd`
-export ENV_DIR="/shared/git/scripts/env"
+export ENV_DIR="/shared/git/scripts/linux/env/"
 export SOFTWARE_DIR="/opt/"
 cd $ENV_DIR
 ################################################################ ALIAS #####################################################################
