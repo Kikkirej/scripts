@@ -1,0 +1,1 @@
+Dism /online /enable-feature /featurename:NetFx3 /All /Source:\\pclemkef\netshare\fremdProgramme\microsoft\win10-64bit-enterprise-sources\sxs /LimitAccess
