@@ -16,6 +16,7 @@ alias fgrep='fgrep --color=auto'
 alias calc='bc -l'
 alias mkdir='mkdir -pv' #Erstellen der Parent Ordner
 alias top='atop'
+alias 
 #Vim
 alias vi=vim
 alias svi='sudo vi'
@@ -27,7 +28,7 @@ alias clipboard='xclip -sel c <' #fügt die folgende Datei ins Clipboard
 alias cgit='cd /shared/git'
 alias ports='netstat -tulanp'
 alias d='docker'
-#Autoroute
+#Autoroot
 if [ $UID -ne 0 ]; then
 	alias apt-get='sudo apt-get'
 	alias dpkg='sudo dpkg'
@@ -60,81 +61,5 @@ alias nh='nohup'
 #VPN
 alias vpndo='sudo vpnc ${ENV_DIR}FHDO.conf'
 alias vpnclose='sudo vpnc-disconnect'
-############################################################### VERSIONS ###################################################################
-################################## JAVA ##############################################
-################################# Java 8 #############################################
-################################# Oracle #############################################
-#export JDK_HOME=${SOFTWARE_DIR}dev/java/oracle/8/jdk1.8.0_191
-export JDK_HOME=${SOFTWARE_DIR}dev/java/oracle/8/jdk1.8.0_192
-############################## AdoptOpenJDK ##########################################
-#export JDK_HOME=${SOFTWARE_DIR}dev/java/adoptopenjdk/8/jdk8u192-b12/
-
-
-################################ Java 11 #############################################
-################################ OpenJDK #############################################
-#export JDK_HOME=${SOFTWARE_DIR}dev/java/openjdk/11/amd64/jdk-11.0.1
-
-################################# Maven ##############################################
-################################### 3 ################################################
-export MAVEN_HOME=${SOFTWARE_DIR}dev/build/maven/3/3.6.0
-
-################################ Eclipse #############################################
-################################ Photon ##############################################
-export ECLIPSE_EE_HOME=${SOFTWARE_DIR}dev/ide/eclipse/photon/jee64/
-
-############################### Jetbrains ############################################
-############################### Datagrip  ############################################
-export DATAGRIP_HOME=${SOFTWARE_DIR}dev/ide/jetbrains/datagrip/DataGrip-2018.3
-############################### Intellij  ############################################
-export INTELLIJ_HOME=${SOFTWARE_DIR}dev/ide/jetbrains/intellij/idea-IU-183.4284.148
-############################################################## VERSIONS END ################################################################
-# Java anwenden
-#if [ -z "$JDK_HOME" ] 
-#then
-#	exit 1
-#fi
-if [ "${JDK_HOME: -1}"!="/" ]
-then
-	export JDK_HOME=${JDK_HOME}"/"
-fi
-if [ -z "$_JAVA_HOME" ]
-then
-	export JAVA_HOME=$JDK_HOME
-fi
-if [ -z "$JRE_HOME" ]
-then
-	export JRE_HOME="${JDK_HOME}jre/"
-fi
-export PATH=${JDK_HOME}bin:${JRE_HOME}bin:$PATH
-
-# Maven aktivieren
-if [ "${MAVEN_HOME: -1}"!="/" ]
-then
-	export MAVEN_HOME=${MAVEN_HOME}"/"
-fi
-export PATH=${MAVEN_HOME}/bin:$PATH
-#Datagrip aktivieren
-if [ ${DATAGRIP_HOME: -1}!="/" ]
-then
-	export DATAGRIP_HOME=${DATAGRIP_HOME}"/"
-fi
-alias datagrip=${DATAGRIP_HOME}bin/datagrip.sh
-#Intellij aktivieren
-if [ "${INTELLIJ_HOME: -1}"!="/" ]
-then
-	export INTELLIJ_HOME=${INTELLIJ_HOME}"/"
-fi
-alias intellij=${INTELLIJ_HOME}bin/idea.sh
-#Eclipse einbinden
-if [ ${ECLIPSE_EE_HOME: -1}!="/" ]
-then
-	export ECLIPSE_EE_HOME=${ECLIPSE_EE_HOME}"/"
-fi
-if [ -z "$ECLIPSE_HOME" ]
-then
-	export ECLIPSE_HOME=${ECLIPSE_EE_HOME}
-fi
-alias eclipse=${ECLIPSE_HOME}eclipse
-alias eclipseee=${ECLIPSE_EE_HOME}eclipse
 # Startverzeichnis
 cd $CALL_PATH
