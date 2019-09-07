@@ -1,7 +1,6 @@
 #!/bin/zsh
 CALL_PATH=`pwd`
-export ENV_DIR="/shared/git/scripts/linux/env/"
-export SOFTWARE_DIR="/opt/"
+export ENV_DIR="/home/lemke/dev/git/scripts/linux/env/"
 cd $ENV_DIR
 ################################################################ ALIAS #####################################################################
 alias rm='rm -i'
@@ -16,7 +15,7 @@ alias fgrep='fgrep --color=auto'
 alias calc='bc -l'
 alias mkdir='mkdir -pv' #Erstellen der Parent Ordner
 alias top='atop'
-alias 
+alias please='sudo'
 #Vim
 alias vi=vim
 alias svi='sudo vi'
@@ -25,7 +24,7 @@ alias edit='vim'
 alias changeenv='vim ${ENV_DIR}/env.sh && source ${ENV_DIR}env.sh'
 #Usability
 alias clipboard='xclip -sel c <' #fügt die folgende Datei ins Clipboard
-alias cgit='cd /shared/git'
+alias cgit='cd /home/lemke/dev/git'
 alias ports='netstat -tulanp'
 alias d='docker'
 #Autoroot
